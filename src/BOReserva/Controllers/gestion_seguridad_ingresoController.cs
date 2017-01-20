@@ -114,7 +114,10 @@ namespace BOReserva.Controllers
         }
 
         #region Metodos Estaticos
-
+        /// <summary>
+        /// A partir del estado de la sesión actual, retorna un objeto Usuario con la información del usuario logueado en el sistema.
+        /// </summary>
+        /// <returns></returns>
         public static Usuario UsuarioActual()
         {
             var estado_sesion = System.Web.HttpContext.Current.Session["Cgestion_seguridad_ingreso"] as Cgestion_seguridad_ingreso;
@@ -122,11 +125,11 @@ namespace BOReserva.Controllers
             {
                 var respuesta = new Usuario()
                 {
-                    id = estado_sesion.idUsuario,
-                    rol = estado_sesion.rolUsuario,
-                    nombre = estado_sesion.nombreUsuarioTexto,
-                    apellido = estado_sesion.apellidoUsuarioTexto,
-                    correo = estado_sesion.correoCampoTexto
+                    _id = estado_sesion.idUsuario,
+                    _rol = new Rol(estado_sesion.rolUsuario, "Rol"),
+                    _nombre = estado_sesion.nombreUsuarioTexto,
+                    _apellido = estado_sesion.apellidoUsuarioTexto,
+                    _correo = estado_sesion.correoCampoTexto
                 };
                 return respuesta;
             }
@@ -135,7 +138,10 @@ namespace BOReserva.Controllers
                 return null;
             }
         }
-
+        /// <summary>
+        /// A partir del estado de la sesión actual, retorna el ID numérico del usuario actual.
+        /// </summary>
+        /// <returns></returns>
         public static int IDUsuarioActual()
         {
             var estado_sesion = System.Web.HttpContext.Current.Session["Cgestion_seguridad_ingreso"] as Cgestion_seguridad_ingreso;
@@ -148,7 +154,10 @@ namespace BOReserva.Controllers
                 return -1;
             }
         }
-
+        /// <summary>
+        /// A partir del estado de la sesión actual, retorna el ID numérico del rol del usuario actual.
+        /// </summary>
+        /// <returns></returns>
         public static int IDRolUsuarioActual()
         {
             var estado_sesion = System.Web.HttpContext.Current.Session["Cgestion_seguridad_ingreso"] as Cgestion_seguridad_ingreso;
