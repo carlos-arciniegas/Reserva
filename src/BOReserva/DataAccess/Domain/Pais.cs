@@ -17,7 +17,7 @@ namespace BOReserva.DataAccess.Domain
             this._nombre = nombre;
         }
 
-        public Pais(int id, String nombre, Dictionary<int,Entidad> ciudades)
+        public Pais(int id, String nombre, Dictionary<int, Entidad> ciudades)
         {
             this._id = id;
             this._nombre = nombre;
@@ -40,7 +40,7 @@ namespace BOReserva.DataAccess.Domain
                 throw e;
             }
         }
-        
+
         public Pais() { }
     }
 }

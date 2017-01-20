@@ -292,8 +292,6 @@ namespace BOReserva.DataAccess.DataAccessObject
                 Desconectar();
             }
         }
-
-      
         #endregion
 
     }

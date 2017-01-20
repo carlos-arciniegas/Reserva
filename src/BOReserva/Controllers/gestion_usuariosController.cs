@@ -6,11 +6,57 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BOReserva.DataAccess.Domain;
+using BOReserva.Controllers.PatronComando;
 
 namespace BOReserva.Controllers
 {
     public class gestion_usuariosController : Controller
     {
+        public static int _rol;
+
+        /// <summary>
+        /// Método de la vista parcial M12_AgregarUsuario2
+        /// </summary>
+        /// <returns>Retorna la vista parcial M12_AgregarUsuario2 en conjunto del Modelo de dicha vista</returns>
+        public ActionResult M12_AgregarUsuario2()
+        {
+            try
+            {
+                CAgregarUsuario model = new CAgregarUsuario();
+                //Command<Dictionary<int, Entidad>> comando = FabricaComando.crearM12ObtenerRoles();
+                //model._rols = comando.ejecutar();
+
+                PersistenciaUsuario p = new PersistenciaUsuario();
+                List<ListaRoles> lista = p.ListarRoles();
+                ViewBag.Roles = new SelectList(lista, "rolID", "rolNombre");
+
+                return PartialView(model);
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+                Response.End();
+                return Json(ex.Message);
+            }
+
+        }
+
+        [HttpPost]
+        public JsonResult guardarUsuario(CAgregarUsuario model)
+        {
+            Entidad rol = FabricaEntidad.InstanciarRol(_rol);
+            rol._id = 1;
+            Entidad nuevoUsuario = FabricaEntidad.InstanciarUsuario(model, rol);
+            Command<string> comando = FabricaComando.crearM12AgregarUsuario(nuevoUsuario);
+            string agrego = comando.ejecutar();
+
+            return (Json(agrego));
+        }
+
+
+
+
         //
         // GET: /gestion_usuario/
         public ActionResult M12_Index()

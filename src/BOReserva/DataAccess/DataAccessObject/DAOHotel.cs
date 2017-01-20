@@ -103,7 +103,7 @@ namespace BOReserva.DataAccess.DataAccessObject
                 conexion.Open();
                 String sql = "SELECT H.*, C.lug_id as id_ciudad, C.lug_nombre as nombre_ciudad, P.lug_id as id_pais, P.lug_nombre as nombre_pais " +
                              "FROM HOTEL H, LUGAR C, LUGAR P " +
-                             "WHERE H.hot_fk_ciudad = C.lug_id and C.lug_fk_lugar_id = P.lug_id AND H.HOT_ID = "+ id;
+                             "WHERE H.hot_fk_ciudad = C.lug_id and C.lug_fk_lugar_id = P.lug_id AND H.HOT_ID = " + id;
 
                 SqlCommand cmd = new SqlCommand(sql, conexion);
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -261,7 +261,7 @@ namespace BOReserva.DataAccess.DataAccessObject
             try
             {
                 conexion.Open();
-                String sql = "UPDATE Hotel SET hot_disponibilidad = " + disponibilidad + 
+                String sql = "UPDATE Hotel SET hot_disponibilidad = " + disponibilidad +
                             " WHERE hot_id = " + hotel._id;
                 SqlCommand cmd = new SqlCommand(sql, conexion);
                 cmd.ExecuteNonQuery();

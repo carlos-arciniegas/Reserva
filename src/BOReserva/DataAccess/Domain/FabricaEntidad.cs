@@ -3,13 +3,12 @@ using BOReserva.Models.gestion_hoteles;
 using BOReserva.Models.gestion_reclamos;
 using BOReserva.Models.gestion_restaurantes;
 using BOReserva.Models.gestion_roles;
+using BOReserva.Models.gestion_usuarios;
 using BOReserva.DataAccess.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
-
 
 namespace BOReserva.DataAccess.Domain
 {
@@ -123,8 +122,8 @@ namespace BOReserva.DataAccess.Domain
             DateTime fecha_nac = Convert.ToDateTime(fecha);
             return new Pasajero(id, nombre1, nombre2, apellido1, apellido2, sexo, fecha_nac, correo);
 		}
-        #endregion
-
+		#endregion
+		
         #region M08_Automoviles
         public static Entidad InstanciarAutomovil(String matricula, String modelo, String fabricante, String anio, String tipovehiculo,
                                                   String kilometraje, String cantpasajeros, String preciocompra, String precioalquiler,
@@ -138,7 +137,7 @@ namespace BOReserva.DataAccess.Domain
         }
         #endregion
 
-        #region Modulo 10
+		#region Modulo 10
         public static CRestauranteModelo crearRestaurant(string nombre, string direccion, string telefono, string descripcion, string horarioApertura, string horarioCierre, int idLugar)
         {
             return new CRestauranteModelo(nombre, direccion, telefono, descripcion, horarioApertura, horarioCierre, idLugar);
@@ -196,8 +195,36 @@ namespace BOReserva.DataAccess.Domain
 
         #region M06 GESTION COMIDA
 
-        public static Entidad instanciarComida(string nombre, string tipo, int estatus, string descripcion) {
+        public static Entidad instanciarComida(string nombre, string tipo, int estatus, string descripcion)
+        {
             return new Comida(nombre, tipo, estatus, descripcion);
+        }
+
+        #endregion
+
+        #region M12_Usuarios 
+        public static Entidad InstanciarUsuario(int id, string nombre, string apellido, string correo, string contrasena, int fkRol, DateTime fechaCreacion, string activo)
+        {
+            return new Usuario();
+        }
+
+        public static Entidad InstanciarUsuario(CAgregarUsuario model, Entidad r)
+        {
+            Rol rol = (Rol)r;
+
+            string nombre = model._nombre;
+            string apellido = model._apellido;
+            string correo = model._correo;
+            string contrasena = model.contraseñaUsuario;
+            DateTime fechaCreacion = model._fechaCreacion;
+            string activo = model._activo;
+
+            return new Usuario(nombre, apellido, correo, contrasena, rol, fechaCreacion, activo);
+        }
+
+        public static Entidad InstanciarRol(int rol)
+        {
+            return new Rol();
         }
 
         #endregion

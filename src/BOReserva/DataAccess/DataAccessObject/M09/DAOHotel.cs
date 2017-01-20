@@ -10,9 +10,10 @@ using System.Web;
 
 namespace BOReserva.DataAccess.DataAccessObject.M09
 {
-    public class DAOHotel:  DAO, IDAOHotel {
+    public class DAOHotel : DAO, IDAOHotel
+    {
 
-        public DAOHotel() {}
+        public DAOHotel() { }
 
 
         int IDAO.Agregar(Entidad e)
@@ -42,7 +43,8 @@ namespace BOReserva.DataAccess.DataAccessObject.M09
                 conexion.Close();
                 return 2;
             }
-            catch (NullReferenceException ex) {
+            catch (NullReferenceException ex)
+            {
                 Debug.WriteLine("Ocurrio una NullReferenceException");
                 Debug.WriteLine(ex.ToString());
                 conexion.Close();
@@ -84,10 +86,10 @@ namespace BOReserva.DataAccess.DataAccessObject.M09
             try
             {
                 conexion.Open();
-                String sql =    "SELECT H.*, C.lug_id as id_ciudad, C.lug_nombre as nombre_ciudad, P.lug_id as id_pais, P.lug_nombre as nombre_pais "+
-                                "FROM HOTEL H, LUGAR C, LUGAR P "+
+                String sql = "SELECT H.*, C.lug_id as id_ciudad, C.lug_nombre as nombre_ciudad, P.lug_id as id_pais, P.lug_nombre as nombre_pais " +
+                                "FROM HOTEL H, LUGAR C, LUGAR P " +
                                 "WHERE H.hot_fk_ciudad = C.lug_id and C.lug_fk_lugar_id = P.lug_id";
-                
+
                 SqlCommand cmd = new SqlCommand(sql, conexion);
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -106,7 +108,7 @@ namespace BOReserva.DataAccess.DataAccessObject.M09
                     String direccionHotel;
                     String paginaWebHotel;
                     String emailHotel;
-                    
+
                     while (reader.Read())
                     {
                         //SE AGREGA CREA UN OBJECTO VEHICLE SE PASAN LOS ATRIBUTO ASI reader["<etiqueta de la columna en la tabla Automovil>"]
@@ -114,11 +116,11 @@ namespace BOReserva.DataAccess.DataAccessObject.M09
                         //public Hotel(int id, String nombre, String direccion, String email, String paginaWeb, int clasificacion, int capacidad, Ciudad ciudad)
                         idPais = Int32.Parse(reader["id_pais"].ToString());
                         nombrePais = reader["nombre_pais"].ToString();
-                        pais = new Pais(idPais,nombrePais);
+                        pais = new Pais(idPais, nombrePais);
 
                         idCiudad = Int32.Parse(reader["id_ciudad"].ToString());
-                        nombreCiudad = reader["nombre_ciudad"].ToString();                         
-                        ciudad = new Ciudad(idCiudad,nombreCiudad,pais);
+                        nombreCiudad = reader["nombre_ciudad"].ToString();
+                        ciudad = new Ciudad(idCiudad, nombreCiudad, pais);
                         idHotel = Int32.Parse(reader["hot_id"].ToString());
 
                         hotel = new Hotel(
@@ -131,7 +133,7 @@ namespace BOReserva.DataAccess.DataAccessObject.M09
                             Int32.Parse(reader["hot_cantidad_habitaciones"].ToString()),
                             ciudad
                         );
-                        listaHoteles.Add(idHotel, hotel);            
+                        listaHoteles.Add(idHotel, hotel);
                     }
                 }
                 cmd.Dispose();

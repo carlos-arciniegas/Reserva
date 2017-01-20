@@ -261,22 +261,26 @@
     <Compile Include="Controllers\List.cs" />
     <Compile Include="Controllers\PatronComando\M09\M09_COVisualizarHoteles.cs" />
     <Compile Include="Controllers\PatronComando\M05\M05_COAgregarPasajero.cs" />
+    <Compile Include="Controllers\PatronComando\M12\M12_COAgregarUsuario.cs" />
+    <Compile Include="Controllers\PatronComando\M12\M12_COObtenerRoles.cs" />
     <Compile Include="Controllers\PatronComando\M13_COAgregarRol.cs" />
     <Compile Include="Controllers\PatronComando\M13_COAgregarRolPermiso.cs" />
     <Compile Include="Controllers\PatronComando\M16_COAgregarReclamo.cs" />
     <Compile Include="DataAccess\DataAccessObject\DAOBoleto.cs" />
     <Compile Include="DataAccess\DataAccessObject\DAOCiudad.cs" />
+    <Compile Include="DataAccess\DataAccessObject\DAOHotel.cs" />
     <Compile Include="DataAccess\DataAccessObject\DAOLugar.cs" />
     <Compile Include="DataAccess\DataAccessObject\DAOPasajero.cs" />
-    <Compile Include="DataAccess\DataAccessObject\DAOHotel.cs" />
     <Compile Include="DataAccess\DataAccessObject\DAOPais.cs" />
     <Compile Include="DataAccess\DataAccessObject\DAOReclamo.cs" />
     <Compile Include="DataAccess\DataAccessObject\DAORol.cs" />
+    <Compile Include="DataAccess\DataAccessObject\DAOUsuario.cs" />
     <Compile Include="DataAccess\DataAccessObject\InterfacesDAO\IDAOAutomovil.cs" />
     <Compile Include="DataAccess\DataAccessObject\InterfacesDAO\IDAOCiudad.cs" />
     <Compile Include="DataAccess\DataAccessObject\InterfacesDAO\IDAOComida.cs" />
     <Compile Include="DataAccess\DataAccessObject\InterfacesDAO\IDAOLogin.cs" />
     <Compile Include="DataAccess\DataAccessObject\InterfacesDAO\IDAOLugar.cs" />
+    <Compile Include="DataAccess\DataAccessObject\InterfacesDAO\IDAOUsuario.cs" />
     <Compile Include="DataAccess\DataAccessObject\M01\DAOLogin.cs" />
     <Compile Include="DataAccess\DataAccessObject\M01\RecursoLogin.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -417,6 +421,7 @@
     <Compile Include="Models\gestion_ruta_comercial\CGestion_ruta.cs" />
     <Compile Include="Models\gestion_ruta_comercial\CRuta.cs" />
     <Compile Include="Models\gestion_usuarios\AgregarUsuario.cs" />
+    <Compile Include="Models\gestion_usuarios\CAgregarUsuario.cs" />
     <Compile Include="Servicio\Servicio_Usuarios\ConexionBD.cs" />
     <Compile Include="Models\gestion_usuarios\CUsuario.cs" />
     <Compile Include="Models\gestion_usuarios\Encriptar.cs" />
@@ -1607,6 +1612,7 @@
     <Content Include="Views\gestion_reclamos\M16_ModificarReclamo.cshtml" />
     <Content Include="Views\gestion_hoteles\M09_AgregarHotel.cshtml" />
     <Content Include="Views\gestion_hoteles\M09_VisualizarHoteles.cshtml" />
+    <Content Include="Views\gestion_usuarios\M12_AgregarUsuario2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\gestion_hoteles\M09_GestionHoteles_Visualizar.cshtml" />
@@ -1652,6 +1658,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DataAccess\DataAccessObject\M12\" />
     <Folder Include="DataAccess\Domain\M04\" />
     <Folder Include="Scripts\Scripts_Reclamo\" />
     <Folder Include="Views\dist\img\credit\" />
